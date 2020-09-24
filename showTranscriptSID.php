@@ -11,7 +11,7 @@
 
 /* Change for your username, database name and password for phpMyAdmin*/
 	define('DB_SERVER', 'classmysql.engr.oregonstate.edu');
-	define('DB_USERNAME', 'cs340_johnsal');
+	define('DB_USERNAME', 'cs340_johnsal@localhost');
 	define('DB_PASSWORD', 'Dip537What3f#$');
 	define('DB_NAME', 'cs340_johnsal');
  
@@ -33,7 +33,7 @@ FROM GRADE_REPORT, STUDENT, COURSE, SECTION WHERE GRADE_REPORT.Student_number=ST
 
 	$result = mysqli_query($link, $query);
 	if (!$result) {
-    die("Query to show fields from table failed");
+    // die("Query to show fields from table failed");
     echo($result);
 	}
 	
