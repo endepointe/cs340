@@ -22,8 +22,9 @@
 	if($link === false){
 		die("ERROR: Could not connect. " . mysqli_connect_error());
 }
-	
-	$student_number = $_GET['sid'];
+  
+	$student_number = 111;
+	// $student_number = $_GET['sid'];
 	$query = "SELECT STUDENT.Name, COURSE.Course_name, GRADE_REPORT.Grade
 FROM GRADE_REPORT, STUDENT, COURSE, SECTION WHERE GRADE_REPORT.Student_number=STUDENT.Student_number AND
  GRADE_REPORT.Section_identifier=SECTION.Section_id AND
