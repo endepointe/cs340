@@ -11,7 +11,7 @@
 
 /* Change for your username, database name and password for phpMyAdmin*/
 	define('DB_SERVER', 'classmysql.engr.oregonstate.edu');
-	define('DB_USERNAME', 'cs340_johnsal@localhost');
+	define('DB_USERNAME', 'cs340_johnsal');
 	define('DB_PASSWORD', 'Dip537What3f#$');
 	define('DB_NAME', 'cs340_johnsal');
  
