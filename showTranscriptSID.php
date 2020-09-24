@@ -33,7 +33,8 @@ FROM GRADE_REPORT, STUDENT, COURSE, SECTION WHERE GRADE_REPORT.Student_number=ST
 
 	$result = mysqli_query($link, $query);
 	if (!$result) {
-		die("Query to show fields from table failed");
+    // die("Query to show fields from table failed");
+    echo($result);
 	}
 	
 	echo "<h1>Transcript </h1>";
