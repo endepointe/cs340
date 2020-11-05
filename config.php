@@ -2,7 +2,7 @@
 /* Change for your username and password for phpMyAdmin*/
 define('DB_SERVER', 'classmysql.engr.oregonstate.edu');
 define('DB_USERNAME', 'cs340_johnsal');
-define('DB_PASSWORD', 'FlyD1v34MyL1f3#$');
+define('DB_PASSWORD', 'Dip537What3f#$');
 define('DB_NAME', 'cs340_johnsal');
  
 /* Attempt to connect to MySQL database */
