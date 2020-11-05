@@ -112,7 +112,12 @@
 					
                     // Select Department Stats
 					// You will need to Create a DEPT_STATS table
-					
+        $create_dept_stats = "CREATE TABLE DEPT_STATS (
+          Dnumber int(2) NOT NULL,
+          Emp_count int(11) NOT NULL,
+          Avg_salary decimal(10,2) NOT NULL,
+          PRIMARY KEY (Dnumber))";
+
                     $sql2 = "SELECT * FROM DEPT_STATS";
                     if($result2 = mysqli_query($link, $sql2)){
                         if(mysqli_num_rows($result2) > 0){
