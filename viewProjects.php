@@ -1,7 +1,7 @@
 <?php
 	session_start();
     // Include config file
-    require_once "config.php";
+    //require_once "config.php";
 ?>
 <!DOCTYPE html>
 <html lang="en">
