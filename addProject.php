@@ -133,6 +133,9 @@
 
 		</div>
 	</form>
+  <?php
+    echo $Hour_err
+  ?>
 <?php		
 	mysqli_free_result($result);
 	mysqli_close($conn);
