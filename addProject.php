@@ -123,7 +123,7 @@
 		</div>
 		<div class="form-group <?php echo (!empty($Hours_err)) ? 'has-error' : ''; ?>">
 			<label>Hours </label>
-			<input type="number" name="Hours" class="form-control" min="1" max="80" value="">
+			<input type="number" name="Hourss" class="form-control" min="1" max="80" value="">
 			<span class="help-block"><?php echo $Hours_err;?></span>
 		</div>
 		<div>
