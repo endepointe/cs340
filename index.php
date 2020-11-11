@@ -111,12 +111,7 @@
 					echo "<br> <h2> Department Stats </h2> <br>";
 					
                     // Select Department Stats
-					// You will need to Create a DEPT_STATS table
-        $create_dept_stats = "CREATE TABLE DEPT_STATS (
-          Dnumber int(2) NOT NULL,
-          Emp_count int(11) NOT NULL,
-          Avg_salary decimal(10,2) NOT NULL,
-          PRIMARY KEY (Dnumber))";
+          // You will need to Create a DEPT_STATS table
 
                     $sql2 = "SELECT * FROM DEPT_STATS";
                     if($result2 = mysqli_query($link, $sql2)){
@@ -147,7 +142,7 @@
                             echo "<p class='lead'><em>No records were found for Dept Stats.</em></p>";
                         }
                     } else{
-                        echo "ERROR: Could not able to execute $sql2. <br>" . mysqli_error($link);
+                        echo "ERROR: Could not execute $sql2. <br>" . mysqli_error($link);
                     }
 					
                     // Close connection

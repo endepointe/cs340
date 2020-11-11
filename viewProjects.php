@@ -40,7 +40,7 @@
                     </div>
 <?php
     // Include config file
-    //require_once "config.php";
+    require_once "config.php";
 // Check existence of id parameter before processing further
 if(isset($_GET["Ssn"]) && !empty(trim($_GET["Ssn"]))){
 	$_SESSION["Ssn"] = $_GET["Ssn"];
