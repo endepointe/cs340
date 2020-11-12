@@ -56,10 +56,10 @@
                     // Attempt select all employee query execution
 					// *****
 					// Insert your function for Salary Level
-					/*
+					///*
 						$sql = "SELECT Ssn,Fname,Lname,Salary, Address, Bdate, PayLevel(Ssn) as Level, Super_ssn, Dno
 							FROM EMPLOYEE";
-					*/
+					//*/
                     $sql = "SELECT Ssn,Fname,Lname,Salary, Address, Bdate, 'Insert your function' as Level, Super_ssn, Dno
 							FROM EMPLOYEE";
                     if($result = mysqli_query($link, $sql)){
