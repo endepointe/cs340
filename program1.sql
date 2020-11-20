@@ -4,7 +4,7 @@
 --
 -- Desc: performs inserts, updates, deletes, and checks against
 --       tables DEPT_STATS, EMPLOYEE, WORKS_ON
--- NOTES: Before performing and project additions, the insertion,
+-- NOTES: Before performing project additions, the insertion,
 --        deletions, and updates to an employee works. After the 
 --        insertion of a project for the specified employee, the 
 --        employee is not able to be deleted. phpmyadmin tells me 
