@@ -51,7 +51,6 @@
                     </div>
                     <?php
                     // Include config file
-                    require_once "config.php";
                     
                     // Attempt select all employee query execution
 					// *****
