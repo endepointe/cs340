@@ -31,7 +31,7 @@
                 <div class="col-md-12">
                     <div class="page-header clearfix">
                         <h2 class="pull-left">Dependent Details</h2>
-                        <a href="createDependent.php" class="btn btn-success pull-right">Add New Dependent</a>
+                        <a href="createDependent.php?Ssn=".<?php echo $Ssn ?> class="btn btn-success pull-right">Add New Dependent</a>
                     </div>
 
                     <?php
