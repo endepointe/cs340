@@ -1,3 +1,11 @@
+<?php
+  session_start();
+  if (issset($_SESSION["Ssn"]) ) {
+    $Essn = $_SESSION["Ssn"];
+  } else {
+    echo "<B>No employeee ssn</B>";
+  }
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -32,7 +40,11 @@
                     <div class="page-header clearfix">
                         <h2 class="pull-left">Dependent Details</h2>
 
-<?php 
+                        <a href="createDependent.php" class="btn btn-success pull-right">Add New Dependent</a>
+                    </div>
+
+                    <?php
+
                     // Include config file
                     require_once "config.php";
                     // Check existence of id parameter before processing further
@@ -40,11 +52,6 @@
                       $_SESSION["Ssn"] = $_GET["Ssn"];                      
                       $Ssn = $_GET["Ssn"];
                     }
-?>
-                        <a href="createDependent.php" class="btn btn-success pull-right">Add New Dependent</a>
-                    </div>
-
-                    <?php
 
                     echo "SSN = '$Ssn'";
 
