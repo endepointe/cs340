@@ -1,6 +1,12 @@
 <?php
 	session_start();	
 // Include config file
+if(isset($_GET["Dname"]) && !empty(trim($_GET["Dname"]))){
+  $_SESSION["Dname"] = $_GET["Dname"];
+  $Dname = $_GET["Dname"];
+  $Essn = $_SESSION["Ssn"];
+}
+
 	require_once "config.php";
  
 // Define variables and initialize with empty values
