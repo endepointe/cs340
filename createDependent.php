@@ -99,7 +99,6 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                     <div class="page-header">
                         <h2>Create Dependent</h2>
                         <p><?php echo $Essn; ?></p>
-                        <p><?php echo $_SESSION["Ssn"]; ?></p>
                     </div>
                     <p>Please fill this form and submit to add a Dependent record to the database.</p>
                     <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
