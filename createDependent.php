@@ -14,7 +14,7 @@ require_once "config.php";
 
 // Define variables and initialize with empty values
 $Dname = $Sex = $Bdate = $Relationship = "";
-$Dname_err = $Sex_err = $Bdate_err = $Relationship_err = "";
+$Dname_err = $Sex_err = $Relationship_err = "";
 
 // Processing form data when form is submitted
 if($_SERVER["REQUEST_METHOD"] == "POST"){
@@ -22,7 +22,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
   // Validate name
   $Dname = trim($_POST["Dname"]);
   if(empty($Dname)){
-    $Dname_err = "Please enter dependent's name.";
+    $Dname_err = "Please enter dependent name.";
   } elseif(!filter_var($Dname, FILTER_VALIDATE_REGEXP, array("options"=>array("regexp"=>"/^[a-zA-Z\s]+$/")))){
     $Dname_err = "Please enter a valid Name.";
   } 
@@ -36,10 +36,6 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 	// Validate Birthdate
     $Bdate = $_POST["Bdate"];
 
-    if(empty($Bdate)){
-      $Bdate_err = "Please enter birthdate.";     
-    }	
-
 	// Validate Relationship 
     $Relationship = trim($_POST["Relationship"]);
     if(empty($Relationship)){
@@ -49,8 +45,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
   } 
 
     // Check input errors before inserting in database
-    if(empty($Dname_err) && empty($Sex_err) 
-				&& empty($Bdate_err)&& empty($Relationship_err)) {
+    if(empty($Dname_err) && empty($Sex_err) empty($Relationship_err)) {
         // Prepare an insert statement
         $sql = "INSERT INTO DEPENDENT (Essn, Dependent_name, Sex, Bdate, Relationship) 
 		        VALUES (?, ?, ?, ?, ?)";
@@ -60,21 +55,20 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             mysqli_stmt_bind_param($stmt, "issss", $param_Essn, $param_Dname, $param_Sex, $param_Bdate, $param_Relationship);
             
             // Set parameters
-			$param_Essn = $Essn;
-			$param_Dname = $Dname;
-			$param_Sex = $Sex;
-			$param_Bdate = $Bdate;
-      $param_Relationship = $Relationship;
+			      $param_Essn = $Essn;
+			      $param_Dname = $Dname;
+			      $param_Sex = $Sex;
+			      $param_Bdate = $Bdate;
+            $param_Relationship = $Relationship;
             
             // Attempt to execute the prepared statement
             if(mysqli_stmt_execute($stmt)){
                 // Records created successfully. Redirect to landing page
-				    header("location: index.php");
+				    header("location: viewDependents.php?Ssn='$Essn'");
 					exit();
             } else{
                 echo "<center><h4>Error while creating a dependent.</h4></center>";
-                // echo "<center><h4>Error ". mysqli_stmt_error($stmt) ."</h4></center>";
-                // echo "<center><h4>Error ". mysqli_stmt_errno($stmt) ."</h4></center>";
+                $Dname_err = "Enter something not wrong.";
             }
         }
          
@@ -112,29 +106,28 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                     </div>
                     <p>Please fill this form and submit to add a Dependent record to the database.</p>
                     <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
-						<div class="form-group <?php echo (!empty($Dname_err)) ? 'has-error' : ''; ?>">
-                            <label>Dependent Name</label>
-                            <input type="text" name="Dname" class="form-control" value="<?php echo $Dname; ?>">
-                            <span class="help-block"><?php echo $Dname_err;?></span>
-                        </div>
-						<div class="form-group <?php echo (!empty($Sex_err)) ? 'has-error' : ''; ?>">
-                            <label>Sex</label>
-                            <input type="text" name="Sex" class="form-control" value="<?php echo $Sex; ?>">
-                            <span class="help-block"><?php echo $Sex_err;?></span>
-                        </div>
-						                  
-						<div class="form-group <?php echo (!empty($Bdate_err)) ? 'has-error' : ''; ?>">
-                            <label>Birth date</label>
-                            <input type="date" name="Bdate" class="form-control" value="<?php echo date('Y-m-d'); ?>">
-                            <span class="help-block"><?php echo $Bdate_err;?></span>
-                        </div>
-                        <div class="form-group <?php echo (!empty($Relationship_err)) ? 'has-error' : ''; ?>">
-                            <label>Relationship</label>
-                            <input type="text" name="Relationship" class="form-control" value="<?php echo $Relationship; ?>">
-                            <span class="help-block"><?php echo $Relationship_err;?></span>
-                        </div>
-                        <input type="submit" class="btn btn-primary" value="Submit">
-                        <a href="index.php" class="btn btn-default">Cancel</a>
+						          <div class="form-group <?php echo (!empty($Dname_err)) ? 'has-error' : ''; ?>">
+                        <label>Dependent Name</label>
+                        <input type="text" name="Dname" class="form-control" value="<?php echo $Dname; ?>">
+                        <span class="help-block"><?php echo $Dname_err;?></span>
+                      </div>
+						          <div class="form-group <?php echo (!empty($Sex_err)) ? 'has-error' : ''; ?>">
+                        <label>Sex</label>
+                        <input type="text" name="Sex" class="form-control" value="<?php echo $Sex; ?>">
+                        <span class="help-block"><?php echo $Sex_err;?></span>
+                      </div>
+						          <div class="form-group <?php echo (!empty($Bdate_err)) ? 'has-error' : ''; ?>">
+                        <label>Birth date</label>
+                        <input type="date" name="Bdate" class="form-control" value="<?php echo date('Y-m-d'); ?>">
+                        <span class="help-block"><?php echo $Bdate_err;?></span>
+                      </div>
+                      <div class="form-group <?php echo (!empty($Relationship_err)) ? 'has-error' : ''; ?>">
+                        <label>Relationship</label>
+                        <input type="text" name="Relationship" class="form-control" value="<?php echo $Relationship; ?>">
+                        <span class="help-block"><?php echo $Relationship_err;?></span>
+                      </div>
+                      <input type="submit" class="btn btn-primary" value="Submit">
+                      <a href="index.php" class="btn btn-default">Cancel</a>
                     </form>
                 </div>
             </div>        
