@@ -30,16 +30,20 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="page-header clearfix">
-                        <h2 class="pull-left">Employees Details</h2>
-                        <a href="create.php" class="btn btn-success pull-right">Add New Employee</a>
+                        <h2 class="pull-left">Dependent Details</h2>
+                        <a href="createDependent.php" class="btn btn-success pull-right">Add New Dependent</a>
                     </div>
 
                     <?php
                     // Include config file
                     require_once "config.php";
-                    
+                    // Check existence of id parameter before processing further
+                    if(isset($_GET["Ssn"]) && !empty(trim($_GET["Ssn"]))){
+                      $_SESSION["Ssn"] = $_GET["Ssn"];                      
+                      $Ssn = $_GET["Ssn"];
+                    }
                     // Attempt select query execution
-                    $sql = "SELECT * FROM DEPENDENT";
+                    $sql = "SELECT Dependent_name, Sex, Bdate, Relationship  FROM DEPENDENT WHERE Essn = '$Ssn'";
                     if($result = mysqli_query($link, $sql)){
                         if(mysqli_num_rows($result) > 0){
                             echo "<table class='table table-bordered table-striped'>";
