@@ -86,7 +86,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             // Attempt to execute the prepared statement
             if(mysqli_stmt_execute($stmt)){
                 // Records updated successfully. Redirect to landing page
-                header("location: viewDependent.php?Ssn=$Essn");
+                header("location: viewDependents.php?Ssn=$Essn");
                 exit();
             } else{
                 echo "<center><h2>Error when updating</center></h2>";
