@@ -43,13 +43,14 @@
                     }
 
                     echo "SSN = '$Ssn'";
+                    $param_Ssn = $Ssn;
 
                     // Attempt select query execution
                     $sql = "SELECT Dependent_name, Sex, Bdate, Relationship  FROM DEPENDENT WHERE Essn = ?";
 
                     $stmt = mysqli_prepare($link, $sql); 
                     mysqli_stmt_bind_param($stmt, "s", $param_Ssn);
-                    $param_Ssn = $Ssn;
+                    
 
                     // Attempt to execute to prepared statement
                     if(mysqli_stmt_execute($stmt)){
