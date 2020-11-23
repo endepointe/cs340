@@ -45,7 +45,7 @@
                             echo "<table class='table table-bordered table-striped'>";
                                 echo "<thead>";
                                     echo "<tr>";
-                                        echo "<th width=10%>Essn</th>";
+                                        //echo "<th width=10%>Essn</th>";
                                         echo "<th width=10%>Dependent_name</th>";
                                         echo "<th width=10%>Sex</th>";
                                         echo "<th width=15%>Bdate</th>";
@@ -56,7 +56,7 @@
                                 echo "<tbody>";
                                 while($row = mysqli_fetch_array($result)){
                                     echo "<tr>";
-                                        echo "<td>" . $row['Essn'] . "</td>";
+                                        //echo "<td>" . $row['Essn'] . "</td>";
                                         echo "<td>" . $row['Dependent_name'] . "</td>";
                                         echo "<td>" . $row['Sex'] . "</td>";
                                         echo "<td>" . $row['Bdate'] . "</td>";
