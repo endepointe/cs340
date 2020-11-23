@@ -1,13 +1,7 @@
 <?php
 // Include config file
 require_once "config.php";
-                     // Check existence of id parameter before processing further
-if(isset($_GET["Ssn"]) && !empty(trim($_GET["Ssn"]))){
-  $_SESSION["Ssn"] = $_GET["Ssn"];                      
-  $Ssn = $_GET["Ssn"];
-}
-                  
-echo $Ssn;
+
 // Define variables and initialize with empty values
 $Essn = $Dependent_name = $Sex = $Bdate = $Relationship;
 $Essn_err = $Dependent_name_err = $Sex_err = $Bdate_err = $Relationship_err;
@@ -73,12 +67,9 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 				    header("location: index.php");
 					exit();
             } else{
-                echo "<center><h4>Error while creating new dependent.</h4></center>";
-        $Essn_err = "Enter a unique Essn.";
-        $Dependent_name_err = "Enter a dependent name.";
-        $Sex_err = "Enter a sex.";
-        $Bdate_err = "Enter a birthdate.";
-        $Relationship_err = "Enter a relationship.";
+                echo "<center><h4>Error while creating a dependent.</h4></center>"
+                // echo "<center><h4>Error ". mysqli_stmt_error($stmt) ."</h4></center>";
+                // echo "<center><h4>Error ". mysqli_stmt_errno($stmt) ."</h4></center>";
             }
         }
          
