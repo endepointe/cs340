@@ -14,7 +14,7 @@ require_once "config.php";
 
 // Define variables and initialize with empty values
 $Dependent_name = $Sex = $Bdate = $Relationship;
-$Essn_err = $Dependent_name_err = $Sex_err = $Bdate_err = $Relationship_err;
+$Dependent_name_err = $Sex_err = $Bdate_err = $Relationship_err;
 
 // Processing form data when form is submitted
 if($_SERVER["REQUEST_METHOD"] == "POST"){
@@ -64,6 +64,13 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             // Bind variables to the prepared statement as parameters
             mysqli_stmt_bind_param($stmt, "issds", $param_Essn, $param_Dependent_name, $param_Sex, $param_Bdate, $param_Relationship);
             
+            // Set parameters
+			$param_Essn = $Essn;
+			$param_Dependent_name = $Dependent_name;
+			$param_Sex = $Sex;
+			$param_Bdate = $Bdate;
+      $param_Relationship = $Relationship;
+            
             // Attempt to execute the prepared statement
             if(mysqli_stmt_execute($stmt)){
                 // Records created successfully. Redirect to landing page
@@ -105,7 +112,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                 <div class="col-md-12">
                     <div class="page-header">
                         <h2>Create Dependent</h2>
-                      <p><?php echo $Essn;?></p>
+                        <p><?php echo $Essn; ?></p>
                     </div>
                     <p>Please fill this form and submit to add a Dependent record to the database.</p>
                     <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
