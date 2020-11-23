@@ -99,7 +99,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     // Close connection
     mysqli_close($link);
 } else {
-///*
+/*
     // Check existence of sID parameter before processing further
 	// Form default values
 
@@ -148,7 +148,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         header("location: error.php");
         exit();
   }	
-  //*/
+  */
 }
 ?>
  
