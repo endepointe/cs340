@@ -30,7 +30,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
   // Validate name
   $Dependent_name = trim($_POST["Dependent_name"]);
   if(empty($Dependent_name)){
-    $Dependent_name = "Please enter dependent's name.";
+    $Dependent_name_err = "Please enter dependent's name.";
   } elseif(!filter_var($Dependent_name, FILTER_VALIDATE_REGEXP, array("options"=>array("regexp"=>"/^[a-zA-Z\s]+$/")))){
     $Dependent_name_err = "Please enter a valid Name.";
   } 
