@@ -1,90 +1,160 @@
 <?php
-
-  session_start();
-
-  if (isset($_SESSION["Ssn"])) {
-    $Essn = $_SESSION["Ssn"];
-  } else {
-    echo "<p>No employeee ssn</p>";
-    $Essn = "";
-  }
-
+	session_start();	
 // Include config file
-require_once "config.php";
-
+	require_once "config.php";
+ 
 // Define variables and initialize with empty values
 $Dname = $Sex = $Bdate = $Relationship = "";
 $Dname_err = $Sex_err = $Relationship_err = "";
 
+// Form default values
+
+if(isset($_GET["Ssn"]) && !empty(trim($_GET["Ssn"]))){
+	$_SESSION["Ssn"] = $_GET["Ssn"];
+
+    // Prepare a select statement
+    $sql1 = "SELECT Dependent_name, Sex, Bdate, Relationship  FROM DEPENDENT WHERE Essn = ?";
+  
+    if($stmt1 = mysqli_prepare($link, $sql1)){
+        // Bind variables to the prepared statement as parameters
+        mysqli_stmt_bind_param($stmt1, "s", $param_Essn);      
+        // Set parameters
+       $param_Essn = trim($_GET["Ssn"]);
+
+        // Attempt to execute the prepared statement
+        if(mysqli_stmt_execute($stmt1)){
+            $result1 = mysqli_stmt_get_result($stmt1);
+			if(mysqli_num_rows($result1) > 0){
+
+        $row = mysqli_fetch_array($result1);
+
+				$Dname = $row['Dname'];
+        $Sex = $row['Sex'];
+        $Bdate = $row['Bdate'];
+				$Relationship = $row['Relationship'];
+			}
+		}
+	}
+}
+
+ 
+// Post information about the employee when the form is submitted
 // Processing form data when form is submitted
 if($_SERVER["REQUEST_METHOD"] == "POST"){
+    // the id is hidden and can not be changed
+    $Essn = $_SESSION["Ssn"];
+    // Validate form data this is similar to the create Employee file
+    // Validate name
+    $Dname = trim($_POST["Dname"]);
+    if(empty($Dname)){
+        $Dname_err = "Please enter a dependent name.";
+    } elseif(!filter_var($Dname, FILTER_VALIDATE_REGEXP, array("options"=>array("regexp"=>"/^[a-zA-Z\s]+$/")))){
+        $Dname_err = "Please enter a valid name.";
+    } 
 
-  // Validate name
-  $Dname = trim($_POST["Dname"]);
-  if(empty($Dname)){
-    $Dname_err = "Please enter dependent name.";
-  } elseif(!filter_var($Dname, FILTER_VALIDATE_REGEXP, array("options"=>array("regexp"=>"/^[a-zA-Z\s]+$/")))){
-    $Dname_err = "Please enter a valid Name.";
-  } 
-    
-	// Validate Sex
-    $Sex = trim($_POST["Sex"]);
-    if(empty($Sex)){
-        $Sex_err = "Please enter Sex.";     
-    }
-
-	// Validate Birthdate
-    $Bdate = $_POST["Bdate"];
-
-	// Validate Relationship 
     $Relationship = trim($_POST["Relationship"]);
     if(empty($Relationship)){
-        $Relationship_err = "Please enter a relationship.";     		
-	  } elseif(!filter_var($Relationship, FILTER_VALIDATE_REGEXP, array("options"=>array("regexp"=>"/^[a-zA-Z\s]+$/")))){
-    $Relationship_err = "Please enter a valid relationship.";
-  } 
+        $Relationship_err = "Please enter a relationship.";
+    } elseif(!filter_var($Relationship, FILTER_VALIDATE_REGEXP, array("options"=>array("regexp"=>"/^[a-zA-Z\s]+$/")))){
+        $Relationship_err = "Please enter a valid relationship.";
+    }  
 
-    // Check input errors before inserting in database
-    if (empty($Dname_err) && empty($Sex_err) && empty($Relationship_err)) {
-        // Prepare an insert statement
-        $sql = "UPDATE DEPENDENT SET Dependent_name=?, Sex=?, Bdate=?, Relationship=?) WHERE Essn=?";
-         
+    $Sex = trim($_POST["Sex"]);
+    if(empty($Sex)){
+        $Sex_err = "Please enter a sex.";     
+    }
+	
+    $Bdate = $_POST["Bdate"];
+	
+    // Check input errors before inserting into database
+    if(empty($Dname_err) && empty($Relationship_err) && empty($Sex_err)){
+        // Prepare an update statement
+        $sql = "UPDATE DEPENDENT SET Dependent_name=?, Sex=?, Bdate=?, Relationship= ? WHERE Essn=?";
+    
         if($stmt = mysqli_prepare($link, $sql)){
             // Bind variables to the prepared statement as parameters
-            mysqli_stmt_bind_param($stmt, "sssi", $param_Dname, $param_Sex, $param_Bdate, $param_Relationship, $param_Essn);
-            
+            mysqli_stmt_bind_param($stmt, "ssssi", $param_Dname, $param_Sex,$param_Bdate, $param_Relationship);
+
             // Set parameters
 			      $param_Essn = $Essn;
             $param_Dname = $Dname;
 			      $param_Sex = $Sex;
             $param_Bdate = $Bdate;
             $param_Relationship = $Relationship;
-
+            
             // Attempt to execute the prepared statement
             if(mysqli_stmt_execute($stmt)){
-                // Records created successfully. Redirect to landing page
-                header("location: viewDependents.php?Ssn=$Essn");
-                //header("location: index.php");
-					      exit();
+                // Records updated successfully. Redirect to landing page
+                header("location: viewDependent.php?Ssn=$Essn");
+                exit();
             } else{
-                echo "<center><h4>Error while creating a dependent.</h4></center>";
+                echo "<center><h2>Error when updating</center></h2>";
             }
-        }
-         
+        }        
         // Close statement
         mysqli_stmt_close($stmt);
     }
-
+    
     // Close connection
     mysqli_close($link);
-  }
-?>
+} else {
 
+    // Check existence of sID parameter before processing further
+	// Form default values
+
+	if(isset($_GET["Ssn"]) && !empty(trim($_GET["Ssn"]))){
+		$_SESSION["Ssn"] = $_GET["Ssn"];
+
+		// Prepare a select statement
+		$sql1 = "SELECT Dependent_name, Sex, Bdate, Relationship  FROM DEPENDENT WHERE Essn = ?";
+  
+		if($stmt1 = mysqli_prepare($link, $sql1)){
+			// Bind variables to the prepared statement as parameters
+			mysqli_stmt_bind_param($stmt1, "s", $param_Essn);      
+			// Set parameters
+		$param_Essn = trim($_GET["Ssn"]);
+
+			// Attempt to execute the prepared statement
+			if(mysqli_stmt_execute($stmt1)){
+				$result1 = mysqli_stmt_get_result($stmt1);
+				if(mysqli_num_rows($result1) == 1){
+
+					$row = mysqli_fetch_array($result1);
+
+				$Dname = $row['Dname'];
+        $Sex = $row['Sex'];
+        $Bdate = $row['Bdate'];
+        $Relationship = $row['Relationship'];
+
+				} else{
+					// URL doesn't contain valid id. Redirect to error page
+					header("location: error.php");
+					exit();
+				}
+                
+			} else{
+				echo "Error in SSN while updating";
+			}
+		
+		}
+			// Close statement
+			mysqli_stmt_close($stmt);
+        
+			// Close connection
+			mysqli_close($link);
+	}  else{
+        // URL doesn't contain id parameter. Redirect to error page
+        header("location: error.php");
+        exit();
+	}	
+}
+?>
+ 
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Create Dependent</title>
+    <title>Update Dependent</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.css">
     <style type="text/css">
         .wrapper{
@@ -99,10 +169,9 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             <div class="row">
                 <div class="col-md-12">
                     <div class="page-header">
-                        <h2>Create Dependent</h2>
-                        <h3>for employee ssn <?php echo $Essn; ?></h3>
+                        <h3>Update Record for SSN =  <?php echo $_GET["Ssn"]; ?> </H3>
                     </div>
-                    <p>Please fill this form and submit to add a Dependent record to the database.</p>
+                    <p>Please edit the input values and submit to update.
                     <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
 						          <div class="form-group <?php echo (!empty($Dname_err)) ? 'has-error' : ''; ?>">
                         <label>Dependent Name</label>

@@ -79,8 +79,8 @@
                                         echo "<td>" . $row['Bdate'] . "</td>";
                                         echo "<td>" . $row['Relationship'] . "</td>";
                                         echo "<td>";
-                                            echo "<a href='updateDependent.php?id=". $row['Ssn'] ."' title='Update Dependent' data-toggle='tooltip'><span class='glyphicon glyphicon-pencil'></span></a>";
-                                            echo "<a href='deleteDependent.php?id=". $row['Ssn'] ."' title='Delete Dependent' data-toggle='tooltip'><span class='glyphicon glyphicon-trash'></span></a>";
+                                            echo "<a href='updateDependent.php?id=". $row['id'] ."' title='Update Dependent' data-toggle='tooltip'><span class='glyphicon glyphicon-pencil'></span></a>";
+                                            echo "<a href='deleteDependent.php?id=". $row['id'] ."' title='Delete Dependent' data-toggle='tooltip'><span class='glyphicon glyphicon-trash'></span></a>";
                                         echo "</td>";
                                     echo "</tr>";
                                 }
