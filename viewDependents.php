@@ -48,7 +48,7 @@
                                         echo "<th width=10%>Essn</th>";
                                         echo "<th width=10%>Dependent_name</th>";
                                         echo "<th width=10%>Sex</th>";
-                                        echo "<th width=10%>Bdate</th>";
+                                        echo "<th width=15%>Bdate</th>";
                                         echo "<th width=10%>Relationship</th>";
                                         echo "<th width=10%>Action</th>";
                                     echo "</tr>";
@@ -62,7 +62,6 @@
                                         echo "<td>" . $row['Bdate'] . "</td>";
                                         echo "<td>" . $row['Relationship'] . "</td>";
                                         echo "<td>";
-                                            echo "<a href='read.php?id=". $row['id'] ."' title='View Record' data-toggle='tooltip'><span class='glyphicon glyphicon-eye-open'></span></a>";
                                             echo "<a href='update.php?id=". $row['id'] ."' title='Update Record' data-toggle='tooltip'><span class='glyphicon glyphicon-pencil'></span></a>";
                                             echo "<a href='delete.php?id=". $row['id'] ."' title='Delete Record' data-toggle='tooltip'><span class='glyphicon glyphicon-trash'></span></a>";
                                         echo "</td>";
