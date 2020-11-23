@@ -8,6 +8,7 @@ $Essn_err = $Dependent_name_err = $Sex_err = $Bdate_err = $Relationship_err;
  
 // Processing form data when form is submitted
 if($_SERVER["REQUEST_METHOD"] == "POST"){
+
   // Validate Essn
   $Essn = trim($_POST["Essn"]);
   if(empty($Essn)){
@@ -107,14 +108,11 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                     </div>
                     <p>Please fill this form and submit to add a Dependent record to the database.</p>
                     <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
-                    <?php echo $
-
-						<!-- <div class="form-group <?php echo (!empty($Essn_err)) ? 'has-error' : ''; ?>">
+						<div class="form-group <?php echo (!empty($Essn_err)) ? 'has-error' : ''; ?>">
                             <label>Essn</label>
                             <input type="text" name="Essn" class="form-control" value="<?php echo $Essn; ?>">
                             <span class="help-block"><?php echo $Essn_err;?></span>
-                        </div> -->
-
+                        </div>
 						<div class="form-group <?php echo (!empty($Dependent_name_err)) ? 'has-error' : ''; ?>">
                             <label>Dependent Name</label>
                             <input type="text" name="Dependent_name" class="form-control" value="<?php echo $Dependent_name; ?>">
