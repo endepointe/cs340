@@ -17,8 +17,6 @@ $Dname_err = $Sex_err = $Relationship_err = "";
 
 if(isset($_GET["Ssn"]) && !empty(trim($_GET["Ssn"]))){
   $_SESSION["Ssn"] = $_GET["Ssn"];
-  $Essn = $_SESSION['Ssn'];
-  $Dname = $_SESSION['Dname'];
 
     // Prepare a select statement
     $sql1 = "SELECT Dependent_name, Sex, Bdate, Relationship  FROM DEPENDENT WHERE Essn = ? AND Dependent_name = ?";
