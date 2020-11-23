@@ -1,29 +1,31 @@
 <?php
+
 session_start();
-if (issset($_SESSION["Ssn"]) ) {
+
+// Define variables and initialize with empty values
+$Essn = $Dependent_name = $Sex = $Bdate = $Relationship;
+$Essn_err = $Dependent_name_err = $Sex_err = $Bdate_err = $Relationship_err;
+
+if (issset($_SESSION["Ssn"])) {
   $Essn = $_SESSION["Ssn"];
 } else {
-  echo "<B>No employeee ssn</B>";
+  echo "<p>No employeee ssn</p>";
+  $Essn = "";
 }
 // Include config file
 require_once "config.php";
 
-// Define variables and initialize with empty values
-//$Essn = 
-$Dependent_name = $Sex = $Bdate = $Relationship;
-
-$Essn_err = $Dependent_name_err = $Sex_err = $Bdate_err = $Relationship_err;
 
 // Processing form data when form is submitted
 if($_SERVER["REQUEST_METHOD"] == "POST"){
 
   // Validate Essn
-  //$Essn = trim($_POST["Essn"]);
-  //if(empty($Essn)){
-  //  $Essn_err = "Please enter SSN.";     
-  //} elseif(!ctype_digit($Essn)){
-  //  $Essn_err = "Please enter a positive integer value of SSN.";
-  //} 
+  $Essn = trim($_POST["Essn"]);
+  if(empty($Essn)){
+    $Essn_err = "Please enter SSN.";     
+  } elseif(!ctype_digit($Essn)){
+    $Essn_err = "Please enter a positive integer value of SSN.";
+  } 
 
   // Validate name
   $Dependent_name = trim($_POST["Dependent_name"]);
@@ -78,6 +80,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                 echo "<center><h4>Error while creating a dependent.</h4></center>";
                 // echo "<center><h4>Error ". mysqli_stmt_error($stmt) ."</h4></center>";
                 // echo "<center><h4>Error ". mysqli_stmt_errno($stmt) ."</h4></center>";
+            }
         }
          
         // Close statement
@@ -88,7 +91,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     mysqli_close($link);
 }
 ?>
- 
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
