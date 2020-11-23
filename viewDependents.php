@@ -48,7 +48,7 @@
                                         //echo "<th width=10%>Essn</th>";
                                         echo "<th width=10%>Dependent_name</th>";
                                         echo "<th width=10%>Sex</th>";
-                                        echo "<th width=15%>Bdate</th>";
+                                        echo "<th width=10%>Bdate</th>";
                                         echo "<th width=10%>Relationship</th>";
                                         echo "<th width=10%>Action</th>";
                                     echo "</tr>";
@@ -81,7 +81,7 @@
                     // Close connection
                     mysqli_close($link);
                     ?>
-
+<p><a href="index.php" class="btn btn-primary">Back</a></p>
                 </div>
             </div>        
         </div>
