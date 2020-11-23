@@ -1,12 +1,6 @@
 <?php
 	session_start();	
 // Include config file
-if(isset($_GET["Dname"]) && !empty(trim($_GET["Dname"]))){
-  $_SESSION["Dname"] = $_GET["Dname"];
-  $Dname = $_GET["Dname"];
-  $Essn = $_SESSION["Ssn"];
-}
-
 	require_once "config.php";
  
 // Define variables and initialize with empty values
@@ -15,8 +9,11 @@ $Dname_err = $Sex_err = $Relationship_err = "";
 
 // Form default values
 
-if(isset($_GET["Ssn"]) && !empty(trim($_GET["Ssn"]))){
-  $_SESSION["Ssn"] = $_GET["Ssn"];
+if(isset($_GET["Dname"]) && !empty(trim($_GET["Dname"]))){
+  $_SESSION["Dname"] = $_GET["Dname"];
+  $Dname = $_GET['Dname'];
+  // ssn cannot be modified/deleted
+  $Essn = $_SESSION['Ssn'];
 
     // Prepare a select statement
     $sql1 = "SELECT Dependent_name, Sex, Bdate, Relationship  FROM DEPENDENT WHERE Essn = ? AND Dependent_name = ?";
