@@ -19,14 +19,6 @@ $Dependent_name_err = $Sex_err = $Bdate_err = $Relationship_err = "";
 // Processing form data when form is submitted
 if($_SERVER["REQUEST_METHOD"] == "POST"){
 
-  // Validate Essn
-  //$Essn = trim($_POST["Essn"]);
-  //if(empty($Essn)){
-  //  $Essn_err = "Please enter SSN.";     
-  //} elseif(!ctype_digit($Essn)){
-  //  $Essn_err = "Please enter a positive integer value of SSN.";
-  //} 
-
   // Validate name
   $Dependent_name = trim($_POST["Dependent_name"]);
   if(empty($Dependent_name)){
@@ -52,9 +44,12 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     $Relationship = trim($_POST["Relationship"]);
     if(empty($Relationship)){
         $Relationship_err = "Please enter a relationship.";     		
-	}
+	  } elseif(!filter_var($Relationship, FILTER_VALIDATE_REGEXP, array("options"=>array("regexp"=>"/^[a-zA-Z\s]+$/")))){
+    $Relationship_err = "Please enter a valid relationship.";
+  } 
+
     // Check input errors before inserting in database
-    if(empty($Essn_err) && empty($Dependent_name_err) && empty($Sex_err) 
+    if(empty($Dependent_name_err) && empty($Sex_err) 
 				&& empty($Bdate_err)&& empty($Relationship_err)) {
         // Prepare an insert statement
         $sql = "INSERT INTO DEPENDENT (Essn, Dependent_name, Sex, Bdate, Relationship) 
