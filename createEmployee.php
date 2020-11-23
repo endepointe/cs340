@@ -58,7 +58,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         $Dno_err = "Please enter a department number.";     		
 	}
     // Check input errors before inserting in database
-    if(empty($Ssn_err) && empty($Lname_err) && empty($Salary_err) 
+    if(empty($Ssn_err) && empty($Fname_err) && empty($Lname_err) && empty($Salary_err) 
 				&& empty($Dno_err)&& empty($Address_err) && empty($Sex_err)){
         // Prepare an insert statement
         $sql = "INSERT INTO EMPLOYEE (Ssn, Fname, Lname, Address, Salary, Sex, Bdate, Dno) 

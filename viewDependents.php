@@ -31,7 +31,7 @@
                 <div class="col-md-12">
                     <div class="page-header clearfix">
                         <h2 class="pull-left">Dependent Details</h2>
-                        <a href="createDependent.php?Ssn=".<?php echo $Ssn ?> class="btn btn-success pull-right">Add New Dependent</a>
+                        <a href="createDependent.php" class="btn btn-success pull-right">Add New Dependent</a>
                     </div>
 
                     <?php
@@ -59,7 +59,6 @@
                             echo "<table class='table table-bordered table-striped'>";
                                 echo "<thead>";
                                     echo "<tr>";
-                                        //echo "<th width=10%>Essn</th>";
                                         echo "<th width=10%>Dependent_name</th>";
                                         echo "<th width=10%>Sex</th>";
                                         echo "<th width=10%>Bdate</th>";
@@ -70,7 +69,6 @@
                                 echo "<tbody>";
                                 while($row = mysqli_fetch_array($result)){
                                     echo "<tr>";
-                                        //echo "<td>" . $row['Essn'] . "</td>";
                                         echo "<td>" . $row['Dependent_name'] . "</td>";
                                         echo "<td>" . $row['Sex'] . "</td>";
                                         echo "<td>" . $row['Bdate'] . "</td>";
@@ -83,6 +81,7 @@
                                 }
                                 echo "</tbody>";                            
                             echo "</table>";
+
                             // Free result set
                             mysqli_free_result($result);
                         } else{

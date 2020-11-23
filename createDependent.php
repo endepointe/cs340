@@ -1,7 +1,13 @@
 <?php
 // Include config file
 require_once "config.php";
- 
+                     // Check existence of id parameter before processing further
+if(isset($_GET["Ssn"]) && !empty(trim($_GET["Ssn"]))){
+  $_SESSION["Ssn"] = $_GET["Ssn"];                      
+  $Ssn = $_GET["Ssn"];
+}
+                  
+echo $Ssn;
 // Define variables and initialize with empty values
 $Essn = $Dependent_name = $Sex = $Bdate = $Relationship;
 $Essn_err = $Dependent_name_err = $Sex_err = $Bdate_err = $Relationship_err;
