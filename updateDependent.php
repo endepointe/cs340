@@ -11,19 +11,19 @@ $Dname_err = $Sex_err = $Relationship_err = "";
 
 if(isset($_GET["Dname"]) && !empty(trim($_GET["Dname"]))){
   $_SESSION["Dname"] = $_GET["Dname"];
-  $Dname = $_GET['Dname'];
+  $OldDname = $_GET['Dname'];
   // ssn cannot be modified/deleted
   $Essn = $_SESSION['Ssn'];
 
     // Prepare a select statement
-    $sql1 = "SELECT Dependent_name, Sex, Bdate, Relationship  FROM DEPENDENT WHERE Essn = ? AND Dependent_name = ?";
+    $sql1 = "SELECT Dependent_name, Sex, Bdate, Relationship FROM DEPENDENT WHERE Essn = ? AND Dependent_name = ?";
   
     if($stmt1 = mysqli_prepare($link, $sql1)){
         // Bind variables to the prepared statement as parameters
         mysqli_stmt_bind_param($stmt1, "is", $param_Essn, $param_Dname);      
         // Set parameters
        $param_Essn = $Essn;
-       $param_Dname = $Dname;
+       $param_Dname = $OldDname;
 
         // Attempt to execute the prepared statement
         if(mysqli_stmt_execute($stmt1)){
@@ -32,7 +32,6 @@ if(isset($_GET["Dname"]) && !empty(trim($_GET["Dname"]))){
 
         $row = mysqli_fetch_array($result1);
 
-				$Dname = $row['Dname'];
         $Sex = $row['Sex'];
         $Bdate = $row['Bdate'];
 				$Relationship = $row['Relationship'];
@@ -100,7 +99,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     // Close connection
     mysqli_close($link);
 } else {
-
+/*
     // Check existence of sID parameter before processing further
 	// Form default values
 
@@ -148,7 +147,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         // URL doesn't contain id parameter. Redirect to error page
         header("location: error.php");
         exit();
-	}	
+  }	
+  */
 }
 ?>
  
@@ -171,13 +171,13 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             <div class="row">
                 <div class="col-md-12">
                     <div class="page-header">
-                        <h3>Update Record for SSN =  <?php echo $_GET["Ssn"]; ?> </H3>
+                        <h3>Update dependent for SSN =  <?php echo $Essn; ?> </H3>
                     </div>
                     <p>Please edit the input values and submit to update.
                     <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
 						          <div class="form-group <?php echo (!empty($Dname_err)) ? 'has-error' : ''; ?>">
                         <label>Dependent Name</label>
-                        <input type="text" name="Dname" class="form-control" value="<?php echo $Dname;?>">
+                        <input type="text" name="Dname" class="form-control" value="<?php echo $OldDname;?>">
                         <span class="help-block"><?php echo $Dname_err;?></span>
                       </div>
 						          <div class="form-group <?php echo (!empty($Sex_err)) ? 'has-error' : '';?>">
