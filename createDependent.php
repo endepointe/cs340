@@ -75,10 +75,9 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 				    header("location: index.php");
 					exit();
             } else{
-                echo "<center><h4>Error while creating a dependent.</h4></center>"
+                echo "<center><h4>Error while creating a dependent.</h4></center>";
                 // echo "<center><h4>Error ". mysqli_stmt_error($stmt) ."</h4></center>";
                 // echo "<center><h4>Error ". mysqli_stmt_errno($stmt) ."</h4></center>";
-            }
         }
          
         // Close statement
