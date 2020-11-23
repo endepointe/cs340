@@ -3,9 +3,7 @@
 require_once "config.php";
  
 // Define variables and initialize with empty values
-$Essn = $_SESSION["Ssn"];
-
-$Dependent_name = $Sex = $Bdate = $Relationship;
+$Essn = $Dependent_name = $Sex = $Bdate = $Relationship;
 $Essn_err = $Dependent_name_err = $Sex_err = $Bdate_err = $Relationship_err;
  
 // Processing form data when form is submitted
