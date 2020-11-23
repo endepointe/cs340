@@ -1,13 +1,13 @@
 <?php
 
-  // session_start();
+  session_start();
 
-  // if (issset($_SESSION["Ssn"])) {
-  //   $Essn = $_SESSION["Ssn"];
-  // } else {
-  //   echo "<p>No employeee ssn</p>";
-  //   $Essn = "";
-  // }
+  if (isset($_SESSION["Ssn"])) {
+    $Essn = $_SESSION["Ssn"];
+  } else {
+    echo "<p>No employeee ssn</p>";
+    $Essn = "";
+  }
  
 // Define variables and initialize with empty values
 $Ssn = $Lname = $Fname = $Salery = $Bdate = $Bdate1 = $Address = $Sex = $Dno = $Super_ssn = "";
