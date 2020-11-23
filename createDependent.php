@@ -10,7 +10,7 @@ $Essn_err = $Dependent_name_err = $Sex_err = $Bdate_err = $Relationship_err;
 if($_SERVER["REQUEST_METHOD"] == "POST"){
 
   // Validate Essn
-  $Essn = trim($_POST["Ssn"]);
+  $Essn = trim($_POST["Essn"]);
   if(empty($Essn)){
     $Essn_err = "Please enter SSN.";     
   } elseif(!ctype_digit($Essn)){
@@ -20,7 +20,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
   // Validate name
   $Dependent_name = trim($_POST["Dependent_name"]);
   if(empty($Dependent_name)){
-    $Dependent_name = "Please enter a Fname.";
+    $Dependent_name = "Please enter dependent's name.";
   } elseif(!filter_var($Dependent_name, FILTER_VALIDATE_REGEXP, array("options"=>array("regexp"=>"/^[a-zA-Z\s]+$/")))){
     $Dependent_name_err = "Please enter a valid Name.";
   } 
@@ -41,7 +41,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 	// Validate Relationship 
     $Relationship = trim($_POST["Relationship"]);
     if(empty($Relationship)){
-        $Relationship_err = "Please enter a department number.";     		
+        $Relationship_err = "Please enter a relationship.";     		
 	}
     // Check input errors before inserting in database
     if(empty($Essn_err) && empty($Dependent_name_err) && empty($Sex_err) 
@@ -68,7 +68,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 					exit();
             } else{
                 echo "<center><h4>Error while creating new dependent.</h4></center>";
-        $Essn_err = "Enter a unique Ssn.";
+        $Essn_err = "Enter a unique Essn.";
         $Dependent_name_err = "Enter a dependent name.";
         $Sex_err = "Enter a sex.";
         $Bdate_err = "Enter a birthdate.";
@@ -109,7 +109,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                     <p>Please fill this form and submit to add a Dependent record to the database.</p>
                     <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
 						<div class="form-group <?php echo (!empty($Essn_err)) ? 'has-error' : ''; ?>">
-                            <label>ESSN</label>
+                            <label>Essn</label>
                             <input type="text" name="Essn" class="form-control" value="<?php echo $Essn; ?>">
                             <span class="help-block"><?php echo $Essn_err;?></span>
                         </div>
@@ -117,7 +117,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 						<div class="form-group <?php echo (!empty($Dependent_name_err)) ? 'has-error' : ''; ?>">
                             <label>Dependent Name</label>
                             <input type="text" name="Dependent_name" class="form-control" value="<?php echo $Dependent_name; ?>">
-                            <span class="help-block"><?php echo $Dependet_name_err;?></span>
+                            <span class="help-block"><?php echo $Dependent_name_err;?></span>
                         </div>
 						<div class="form-group <?php echo (!empty($Sex_err)) ? 'has-error' : ''; ?>">
                             <label>Sex</label>
@@ -132,7 +132,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                         </div>
                         <div class="form-group <?php echo (!empty($Relationship_err)) ? 'has-error' : ''; ?>">
                             <label>Relationship</label>
-<input type="text" name="Relationship" class="form-control" value="<?php echo $Relationship; ?>">
+                            <input type="text" name="Relationship" class="form-control" value="<?php echo $Relationship; ?>">
                             <span class="help-block"><?php echo $Relationship_err;?></span>
                         </div>
                         <input type="submit" class="btn btn-primary" value="Submit">
