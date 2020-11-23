@@ -1,11 +1,3 @@
-<?php
-  session_start();
-  if (issset($_SESSION["Ssn"]) ) {
-    $Essn = $_SESSION["Ssn"];
-  } else {
-    echo "<B>No employeee ssn</B>";
-  }
-?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
