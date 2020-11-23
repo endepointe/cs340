@@ -103,24 +103,24 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                     </div>
                     <p>Please fill this form and submit to add a Dependent record to the database.</p>
                     <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
-						          <div class="form-group <?php echo (!empty($Dname_err)) ? 'has-error' : ''; ?>">
+						          <div class="form-group <?php echo (!empty($Dname_err)) ? 'has-error' : '';?>">
                         <label>Dependent Name</label>
-                        <input type="text" name="Dname" class="form-control" value="<?php echo $Dname; ?>">
+                        <input type="text" name="Dname" class="form-control" value="<?php echo $Dname;?>">
                         <span class="help-block"><?php echo $Dname_err;?></span>
                       </div>
-						          <div class="form-group <?php echo (!empty($Sex_err)) ? 'has-error' : ''; ?>">
+						          <div class="form-group <?php echo (!empty($Sex_err)) ? 'has-error' : '';?>">
                         <label>Sex</label>
-                        <input type="text" name="Sex" class="form-control" value="<?php echo $Sex; ?>">
+                        <input type="text" name="Sex" class="form-control" value="<?php echo $Sex;?>">
                         <span class="help-block"><?php echo $Sex_err;?></span>
                       </div>
 						          <div class="form-group <?php echo (!empty($Bdate_err)) ? 'has-error' : ''; ?>">
                         <label>Birth date</label>
-                        <input type="date" name="Bdate" class="form-control" value="<?php echo date('Y-m-d'); ?>">
+                        <input type="date" name="Bdate" class="form-control" value="<?php echo date('Y-m-d');?>">
                         <span class="help-block"><?php echo $Bdate_err;?></span>
                       </div>
-                      <div class="form-group <?php echo (!empty($Relationship_err)) ? 'has-error' : ''; ?>">
+                      <div class="form-group <?php echo (!empty($Relationship_err)) ? 'has-error' : '';?>">
                         <label>Relationship</label>
-                        <input type="text" name="Relationship" class="form-control" value="<?php echo $Relationship; ?>">
+                        <input type="text" name="Relationship" class="form-control" value="<?php echo $Relationship;?>">
                         <span class="help-block"><?php echo $Relationship_err;?></span>
                       </div>
                       <input type="submit" class="btn btn-primary" value="Submit">

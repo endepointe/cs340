@@ -31,12 +31,9 @@
                 <div class="col-md-12">
                     <div class="page-header clearfix">
                         <h2 class="pull-left">Dependent Details</h2>
-
                         <a href="createDependent.php" class="btn btn-success pull-right">Add New Dependent</a>
                     </div>
-
                     <?php
-
                     // Include config file
                     require_once "config.php";
                     // Check existence of id parameter before processing further
@@ -46,6 +43,7 @@
                     }
 
                     echo "SSN = '$Ssn'";
+                    echo "session ssn = ". "$SESSION['Ssn']";
 
                     // Attempt select query execution
                     $sql = "SELECT Dependent_name, Sex, Bdate, Relationship  FROM DEPENDENT WHERE Essn = ?";
