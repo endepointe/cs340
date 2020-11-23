@@ -100,57 +100,6 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     
     // Close connection
     mysqli_close($link);
-} else {
-/*
-    // Check existence of sID parameter before processing further
-	// Form default values
-
-	if(isset($_GET["Ssn"]) && !empty(trim($_GET["Ssn"]))){
-		$_SESSION["Ssn"] = $_GET["Ssn"];
-
-		// Prepare a select statement
-		$sql1 = "SELECT Dependent_name, Sex, Bdate, Relationship  FROM DEPENDENT WHERE Essn = ?";
-  
-		if($stmt1 = mysqli_prepare($link, $sql1)){
-			// Bind variables to the prepared statement as parameters
-			mysqli_stmt_bind_param($stmt1, "s", $param_Essn);      
-			// Set parameters
-		$param_Essn = trim($_GET["Ssn"]);
-
-			// Attempt to execute the prepared statement
-			if(mysqli_stmt_execute($stmt1)){
-				$result1 = mysqli_stmt_get_result($stmt1);
-				if(mysqli_num_rows($result1) == 1){
-
-					$row = mysqli_fetch_array($result1);
-
-				$Dname = $row['Dname'];
-        $Sex = $row['Sex'];
-        $Bdate = $row['Bdate'];
-        $Relationship = $row['Relationship'];
-
-				} else{
-					// URL doesn't contain valid id. Redirect to error page
-					header("location: error.php");
-					exit();
-				}
-                
-			} else{
-				echo "Error in SSN while updating";
-			}
-		
-		}
-			// Close statement
-			mysqli_stmt_close($stmt);
-        
-			// Close connection
-			mysqli_close($link);
-	}  else{
-        // URL doesn't contain id parameter. Redirect to error page
-        header("location: error.php");
-        exit();
-  }	
-  */
 }
 ?>
  
