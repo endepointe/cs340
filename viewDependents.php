@@ -46,7 +46,7 @@
                     $param_Ssn = $Ssn;
 
                     // Attempt select query execution
-                    $sql = "SELECT Dependent_name, Sex, Bdate, Relationship  FROM DEPENDENT WHERE Essn = ?";
+                    $sql = "SELECT Dependent_name, Sex, Bdate, Relationship  FROM DEPENDENT WHERE Essn = '$Ssn'";
 
                     $stmt = mysqli_prepare($link, $sql); 
                     mysqli_stmt_bind_param($stmt, "s", $param_Ssn);
