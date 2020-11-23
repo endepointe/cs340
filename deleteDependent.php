@@ -15,14 +15,15 @@
 		if(isset($_SESSION["Ssn"]) && !empty($_SESSION["Ssn"])){ 
 			$Ssn = $_SESSION['Ssn'];
 			// Prepare a delete statement
-			$sql = "DELETE FROM DEPENDENT WHERE Dependent_name = ?";
+			$sql = "DELETE FROM DEPENDENT WHERE Dependent_name = ? AND Essn = ?";
    
 			if($stmt = mysqli_prepare($link, $sql)){
 			// Bind variables to the prepared statement as parameters
-				mysqli_stmt_bind_param($stmt, "s", $param_Dname);
+				mysqli_stmt_bind_param($stmt, "si", $param_Dname, $param_Essn);
  
 				// Set parameters
-				$param_Dname = $Dname;
+        $param_Dname = $Dname;
+        $param_Essn = $Essn;
        
 				// Attempt to execute the prepared statement
 				if(mysqli_stmt_execute($stmt)){
