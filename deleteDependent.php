@@ -2,16 +2,18 @@
 
   session_start();
 
-	if(isset($_GET["Ssn"]) && !empty(trim($_GET["Ssn"]))){
-		$_SESSION["Ssn"] = $_GET["Ssn"];
+	if(isset($_GET["Dname"]) && !empty(trim($_GET["Dname"]))){
+    $_SESSION["Dname"] = $_GET["Dname"];
+    $Dname = $_GET["Dname"];
+    $Essn = $_SESSION["Ssn"]
 	}
 
   require_once "config.php";
 
-	// Delete an Employee's record after confirmation
+	// Delete an Dependent's record after confirmation
 	if ($_SERVER["REQUEST_METHOD"] == "POST") {
-		if(isset($_SESSION["Dname"]) && !empty($_SESSION["Dname"])){ 
-			$Dname = $_SESSION['Dname'];
+		if(isset($_SESSION["Ssn"]) && !empty($_SESSION["Ssn"])){ 
+			$Ssn = $_SESSION['Ssn'];
 			// Prepare a delete statement
 			$sql = "DELETE FROM DEPENDENT WHERE Dependent_name = ?";
    
@@ -69,8 +71,8 @@
                     </div>
                     <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
                         <div class="alert alert-danger fade in">
-                            <input type="hidden" name="Ssn" value="<?php echo ($_SESSION["Ssn"]); ?>"/>
-                            <p>Are you sure you want to delete the dependent for <?php echo ($_SESSION["Ssn"]); ?>?</p><br>
+                            <p>For employee <?php echo ($_SESSION["Ssn"]); ?></p>
+                            <p>Are you sure you want to delete the dependent <?php echo ($_SESSION["Dname"]); ?>?</p><br>
                                 <input type="submit" value="Yes" class="btn btn-danger">
                                 <a href="index.php" class="btn btn-default">No</a>
                             </p>
