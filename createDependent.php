@@ -13,19 +13,19 @@
 require_once "config.php";
 
 // Define variables and initialize with empty values
-//$Dependent_name = $Sex = $Bdate = $Relationship;
-//$Essn_err = $Dependent_name_err = $Sex_err = $Bdate_err = $Relationship_err;
+$Dependent_name = $Sex = $Bdate = $Relationship;
+$Essn_err = $Dependent_name_err = $Sex_err = $Bdate_err = $Relationship_err;
 
 // Processing form data when form is submitted
 if($_SERVER["REQUEST_METHOD"] == "POST"){
 
   // Validate Essn
-  $Essn = trim($_POST["Essn"]);
-  if(empty($Essn)){
-    $Essn_err = "Please enter SSN.";     
-  } elseif(!ctype_digit($Essn)){
-    $Essn_err = "Please enter a positive integer value of SSN.";
-  } 
+  //$Essn = trim($_POST["Essn"]);
+  //if(empty($Essn)){
+  //  $Essn_err = "Please enter SSN.";     
+  //} elseif(!ctype_digit($Essn)){
+  //  $Essn_err = "Please enter a positive integer value of SSN.";
+  //} 
 
   // Validate name
   $Dependent_name = trim($_POST["Dependent_name"]);
@@ -63,13 +63,6 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         if($stmt = mysqli_prepare($link, $sql)){
             // Bind variables to the prepared statement as parameters
             mysqli_stmt_bind_param($stmt, "issds", $param_Essn, $param_Dependent_name, $param_Sex, $param_Bdate, $param_Relationship);
-            
-            // Set parameters
-			$param_Essn = $Essn;
-			$param_Dependent_name = $Dependent_name;
-			$param_Sex = $Sex;
-			$param_Bdate = $Bdate;
-      $param_Relationship = $Relationship;
             
             // Attempt to execute the prepared statement
             if(mysqli_stmt_execute($stmt)){
@@ -112,14 +105,10 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                 <div class="col-md-12">
                     <div class="page-header">
                         <h2>Create Dependent</h2>
+                      <p><?php echo $Essn;?></p>
                     </div>
                     <p>Please fill this form and submit to add a Dependent record to the database.</p>
                     <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
-						<div class="form-group <?php echo (!empty($Essn_err)) ? 'has-error' : ''; ?>">
-                            <label>Essn</label>
-                            <input type="text" name="Essn" class="form-control" value="<?php echo $Essn;?>">
-                            <span class="help-block"><?php echo $Essn_err;?></span>
-                        </div>
 						<div class="form-group <?php echo (!empty($Dependent_name_err)) ? 'has-error' : ''; ?>">
                             <label>Dependent Name</label>
                             <input type="text" name="Dependent_name" class="form-control" value="<?php echo $Dependent_name; ?>">
