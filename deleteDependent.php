@@ -13,7 +13,8 @@
 	// Delete an Dependent's record after confirmation
 	if ($_SERVER["REQUEST_METHOD"] == "POST") {
 		if(isset($_SESSION["Ssn"]) && !empty($_SESSION["Ssn"])){ 
-			$Ssn = $_SESSION['Ssn'];
+      $Essn = $_SESSION['Ssn'];
+      $Dname = $_SESSION['Dname'];
 			// Prepare a delete statement
 			$sql = "DELETE FROM DEPENDENT WHERE Dependent_name = ? AND Essn = ?";
    
