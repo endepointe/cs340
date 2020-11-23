@@ -14,18 +14,18 @@ require_once "config.php";
 
 // Define variables and initialize with empty values
 //$Dependent_name = $Sex = $Bdate = $Relationship;
-$Essn_err = $Dependent_name_err = $Sex_err = $Bdate_err = $Relationship_err;
+//$Essn_err = $Dependent_name_err = $Sex_err = $Bdate_err = $Relationship_err;
 
 // Processing form data when form is submitted
 if($_SERVER["REQUEST_METHOD"] == "POST"){
 
   // Validate Essn
-  //$Essn = trim($_POST["Essn"]);
-  //if(empty($Essn)){
-  //  $Essn_err = "Please enter SSN.";     
-  //} elseif(!ctype_digit($Essn)){
-  //  $Essn_err = "Please enter a positive integer value of SSN.";
-  //} 
+  $Essn = trim($_POST["Essn"]);
+  if(empty($Essn)){
+    $Essn_err = "Please enter SSN.";     
+  } elseif(!ctype_digit($Essn)){
+    $Essn_err = "Please enter a positive integer value of SSN.";
+  } 
 
   // Validate name
   $Dependent_name = trim($_POST["Dependent_name"]);
@@ -117,7 +117,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                     <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
 						<div class="form-group <?php echo (!empty($Essn_err)) ? 'has-error' : ''; ?>">
                             <label>Essn</label>
-                            <input type="text" name="Essn" class="form-control" value="<?php echo $Essn; ?>">
+                            <input type="text" name="Essn" class="form-control" value="<?php echo $Essn;?>">
                             <span class="help-block"><?php echo $Essn_err;?></span>
                         </div>
 						<div class="form-group <?php echo (!empty($Dependent_name_err)) ? 'has-error' : ''; ?>">
