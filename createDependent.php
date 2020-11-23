@@ -58,12 +58,13 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             $param_Dname = $Dname;
 			      $param_Sex = $Sex;
             $param_Bdate = $Bdate;
+            $param_Relationship = $Relationship;
 
             // Attempt to execute the prepared statement
             if(mysqli_stmt_execute($stmt)){
                 // Records created successfully. Redirect to landing page
-                //header("location: viewDependents.php?Ssn='$Essn'");
-                header("location: index.php");
+                header("location: viewDependents.php?Ssn='$Essn'");
+                //header("location: index.php");
 					      exit();
             } else{
                 echo "<center><h4>Error while creating a dependent.</h4></center>";
@@ -99,7 +100,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                 <div class="col-md-12">
                     <div class="page-header">
                         <h2>Create Dependent</h2>
-                        <p><?php echo $Essn; ?></p>
+                        <h3>for employee ssn <?php echo $Essn; ?></h3>
                     </div>
                     <p>Please fill this form and submit to add a Dependent record to the database.</p>
                     <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
