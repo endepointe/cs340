@@ -2,16 +2,16 @@
 
   session_start();
 
-	if(isset($_GET["Dname"]) && !empty(trim($_GET["Dname"]))){
-		$_SESSION["Dname"] = $_GET["Dname"];
+	if(isset($_GET["Ssn"]) && !empty(trim($_GET["Ssn"]))){
+		$_SESSION["Ssn"] = $_GET["Ssn"];
 	}
 
   require_once "config.php";
 
 	// Delete an Employee's record after confirmation
 	if ($_SERVER["REQUEST_METHOD"] == "POST") {
-		if(isset($_SESSION["Ssn"]) && !empty($_SESSION["Ssn"])){ 
-			$Ssn = $_SESSION['Ssn'];
+		if(isset($_SESSION["Dname"]) && !empty($_SESSION["Dname"])){ 
+			$Dname = $_SESSION['Dname'];
 			// Prepare a delete statement
 			$sql = "DELETE FROM DEPENDENT WHERE Dependent_name = ?";
    
