@@ -62,7 +62,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             // Attempt to execute the prepared statement
             if(mysqli_stmt_execute($stmt)){
                 // Records created successfully. Redirect to landing page
-				        header("location: viewDependents.php?Ssn='$Essn'");
+                //header("location: viewDependents.php?Ssn='$Essn'");
+                header("location: index.php");
 					      exit();
             } else{
                 echo "<center><h4>Error while creating a dependent.</h4></center>";
