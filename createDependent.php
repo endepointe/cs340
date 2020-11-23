@@ -111,10 +111,10 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                     </div>
                     <p>Please fill this form and submit to add a Dependent record to the database.</p>
                     <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
-						<div class="form-group <?php echo (!empty($Dependent_name_err)) ? 'has-error' : ''; ?>">
+						<div class="form-group <?php echo (!empty($Dname_err)) ? 'has-error' : ''; ?>">
                             <label>Dependent Name</label>
-                            <input type="text" name="Dependent_name" class="form-control" value="<?php echo $Dependent_name; ?>">
-                            <span class="help-block"><?php echo $Dependent_name_err;?></span>
+                            <input type="text" name="Dname" class="form-control" value="<?php echo $Dname; ?>">
+                            <span class="help-block"><?php echo $Dname_err;?></span>
                         </div>
 						<div class="form-group <?php echo (!empty($Sex_err)) ? 'has-error' : ''; ?>">
                             <label>Sex</label>
