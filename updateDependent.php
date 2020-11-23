@@ -45,6 +45,7 @@ if(isset($_GET["Dname"]) && !empty(trim($_GET["Dname"]))){
 if($_SERVER["REQUEST_METHOD"] == "POST"){
 
     $Essn = $_SESSION["Ssn"];
+    $OldDname = $_SESSION["Dname"];
     $Dname = trim($_POST["Dname"]);
 
     if(empty($Dname)){
@@ -70,15 +71,16 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     // Check input errors before inserting into database
     if(empty($Dname_err) && empty($Relationship_err) && empty($Sex_err)){
         // Prepare an update statement
-        $sql = "UPDATE DEPENDENT SET Dependent_name=?, Sex=?, Bdate=?, Relationship=? WHERE Essn=? AND Dependent_name = ?";
+        $sql = "UPDATE DEPENDENT SET Dependent_name=?, Sex=?, Bdate=?, Relationship=? WHERE Essn=? AND Dependent_name=?";
     
         if($stmt = mysqli_prepare($link, $sql)){
             // Bind variables to the prepared statement as parameters
-            mysqli_stmt_bind_param($stmt, "ssssis", $param_Dname, $param_Sex,$param_Bdate, $param_Relationship, $param_Essn, $param_Dname);
+            mysqli_stmt_bind_param($stmt, "ssssis", $param_Dname, $param_Sex,$param_Bdate, $param_Relationship, $param_Essn, $param_OldDname);
 
             // Set parameters
 			      $param_Essn = $Essn;
             $param_Dname = $Dname;
+            $param_OldDname = $OldDname;
 			      $param_Sex = $Sex;
             $param_Bdate = $Bdate;
             $param_Relationship = $Relationship;
