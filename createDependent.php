@@ -5,6 +5,8 @@ require_once "config.php";
 // Define variables and initialize with empty values
 $Essn = $Dependent_name = $Sex = $Bdate = $Relationship;
 $Essn_err = $Dependent_name_err = $Sex_err = $Bdate_err = $Relationship_err;
+
+echo $Ssn; 
  
 // Processing form data when form is submitted
 if($_SERVER["REQUEST_METHOD"] == "POST"){
