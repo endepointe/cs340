@@ -43,7 +43,6 @@
                     }
 
                     echo "SSN = '$Ssn'";
-                    echo $SESSION['Ssn'];
 
                     // Attempt select query execution
                     $sql = "SELECT Dependent_name, Sex, Bdate, Relationship  FROM DEPENDENT WHERE Essn = ?";
