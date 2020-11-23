@@ -45,11 +45,12 @@
                             echo "<table class='table table-bordered table-striped'>";
                                 echo "<thead>";
                                     echo "<tr>";
-                                        echo "<th>Essn</th>";
-                                        echo "<th>Dependent_name</th>";
-                                        echo "<th>Sex</th>";
-                                        echo "<th>Bdate</th>";
-                                        echo "<th>Relationship</th>";
+                                        echo "<th width=10%>Essn</th>";
+                                        echo "<th width=10%>Dependent_name</th>";
+                                        echo "<th width=10%>Sex</th>";
+                                        echo "<th width=10%>Bdate</th>";
+                                        echo "<th width=10%>Relationship</th>";
+                                        echo "<th width=10%>Action</th>";
                                     echo "</tr>";
                                 echo "</thead>";
                                 echo "<tbody>";
