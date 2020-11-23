@@ -45,10 +45,9 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
   } 
 
     // Check input errors before inserting in database
-    if (empty($Dname_err) && empty($Sex_err) empty($Relationship_err)) {
+    if (empty($Dname_err) && empty($Sex_err) && empty($Relationship_err)) {
         // Prepare an insert statement
-        $sql = "INSERT INTO DEPENDENT (Essn, Dependent_name, Sex, Bdate, Relationship) 
-		        VALUES (?, ?, ?, ?, ?)";
+        $sql = "INSERT INTO DEPENDENT (Essn, Dependent_name, Sex, Bdate, Relationship) VALUES (?, ?, ?, ?, ?)";
          
         if($stmt = mysqli_prepare($link, $sql)){
             // Bind variables to the prepared statement as parameters
@@ -57,14 +56,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             // Set parameters
 			      $param_Essn = $Essn;
             $param_Dname = $Dname;
-            $param_Ssn = $Ssn;
-            $param_Lname = $Lname;
-			      $param_Fname = $Fname;
-			      $param_Address = $Address;
 			      $param_Sex = $Sex;
-			      $param_Bdate = $Bdate;
-            $param_Salary = $Salary;
-            $param_Dno = $Dno;
+            $param_Bdate = $Bdate;
 
             // Attempt to execute the prepared statement
             if(mysqli_stmt_execute($stmt)){
