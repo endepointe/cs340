@@ -40,7 +40,7 @@
                     // Check existence of id parameter before processing further
                     if(isset($_GET["Ssn"]) && !empty(trim($_GET["Ssn"]))){
                       $_SESSION["Ssn"] = $_GET["Ssn"];                      
-                      $Ssn = $_GET["SSN"];
+                      $Ssn = $_GET["Ssn"];
                     }
 
                     echo "SSN = '$Ssn'";
