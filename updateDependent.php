@@ -70,11 +70,11 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     // Check input errors before inserting into database
     if(empty($Dname_err) && empty($Relationship_err) && empty($Sex_err)){
         // Prepare an update statement
-        $sql = "UPDATE DEPENDENT SET Dependent_name=?, Sex=?, Bdate=?, Relationship= ? WHERE Essn=? AND Dependent_name = ?";
+        $sql = "UPDATE DEPENDENT SET Dependent_name=?, Sex=?, Bdate=?, Relationship=? WHERE Essn=? AND Dependent_name = ?";
     
         if($stmt = mysqli_prepare($link, $sql)){
             // Bind variables to the prepared statement as parameters
-            mysqli_stmt_bind_param($stmt, "ssssis", $param_Dname, $param_Sex,$param_Bdate, $param_Relationship, $param_Dname);
+            mysqli_stmt_bind_param($stmt, "ssssis", $param_Dname, $param_Sex,$param_Bdate, $param_Relationship, $param_Essn, $param_Dname);
 
             // Set parameters
 			      $param_Essn = $Essn;
