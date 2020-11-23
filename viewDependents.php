@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Dashboard</title>
+    <title>Dependents</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.js"></script>
@@ -39,7 +39,7 @@
                     require_once "config.php";
                     
                     // Attempt select query execution
-                    $sql = "SELECT * FROM employees";
+                    $sql = "SELECT * FROM Dependents";
                     if($result = mysqli_query($link, $sql)){
                         if(mysqli_num_rows($result) > 0){
                             echo "<table class='table table-bordered table-striped'>";
