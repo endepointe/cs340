@@ -13,18 +13,18 @@
 require_once "config.php";
 
 // Define variables and initialize with empty values
-$Dependent_name = $Sex = $Bdate = $Relationship = "";
-$Dependent_name_err = $Sex_err = $Bdate_err = $Relationship_err = "";
+$Dname = $Sex = $Bdate = $Relationship = "";
+$Dname_err = $Sex_err = $Bdate_err = $Relationship_err = "";
 
 // Processing form data when form is submitted
 if($_SERVER["REQUEST_METHOD"] == "POST"){
 
   // Validate name
-  $Dependent_name = trim($_POST["Dependent_name"]);
-  if(empty($Dependent_name)){
-    $Dependent_name_err = "Please enter dependent's name.";
-  } elseif(!filter_var($Dependent_name, FILTER_VALIDATE_REGEXP, array("options"=>array("regexp"=>"/^[a-zA-Z\s]+$/")))){
-    $Dependent_name_err = "Please enter a valid Name.";
+  $Dname = trim($_POST["Dname"]);
+  if(empty($Dname)){
+    $Dname_err = "Please enter dependent's name.";
+  } elseif(!filter_var($Dname, FILTER_VALIDATE_REGEXP, array("options"=>array("regexp"=>"/^[a-zA-Z\s]+$/")))){
+    $Dname_err = "Please enter a valid Name.";
   } 
     
 	// Validate Sex
@@ -34,7 +34,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     }
 
 	// Validate Birthdate
-    $Bdate = trim($_POST["Bdate"]);
+    $Bdate = $_POST["Bdate"];
 
     if(empty($Bdate)){
       $Bdate_err = "Please enter birthdate.";     
@@ -49,7 +49,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
   } 
 
     // Check input errors before inserting in database
-    if(empty($Dependent_name_err) && empty($Sex_err) 
+    if(empty($Dname_err) && empty($Sex_err) 
 				&& empty($Bdate_err)&& empty($Relationship_err)) {
         // Prepare an insert statement
         $sql = "INSERT INTO DEPENDENT (Essn, Dependent_name, Sex, Bdate, Relationship) 
@@ -57,11 +57,11 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
          
         if($stmt = mysqli_prepare($link, $sql)){
             // Bind variables to the prepared statement as parameters
-            mysqli_stmt_bind_param($stmt, "issds", $param_Essn, $param_Dependent_name, $param_Sex, $param_Bdate, $param_Relationship);
+            mysqli_stmt_bind_param($stmt, "issss", $param_Essn, $param_Dname, $param_Sex, $param_Bdate, $param_Relationship);
             
             // Set parameters
 			$param_Essn = $Essn;
-			$param_Dependent_name = $Dependent_name;
+			$param_Dname = $Dname;
 			$param_Sex = $Sex;
 			$param_Bdate = $Bdate;
       $param_Relationship = $Relationship;
