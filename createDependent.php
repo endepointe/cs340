@@ -3,16 +3,13 @@
 require_once "config.php";
  
 // Define variables and initialize with empty values
-$Essn = $Dependent_name = $Sex = $Bdate = $Relationship;
+$Essn = $_SESSION["Ssn"];
+
+$Dependent_name = $Sex = $Bdate = $Relationship;
 $Essn_err = $Dependent_name_err = $Sex_err = $Bdate_err = $Relationship_err;
  
 // Processing form data when form is submitted
 if($_SERVER["REQUEST_METHOD"] == "POST"){
-                    // Check existence of id parameter before processing further
-                    if(isset($_["Ssn"]) && !empty(trim($_POST["Ssn"]))){
-                      $_SESSION["Ssn"] = $_POST["Ssn"];                      
-                      $Essn = $_POST["Ssn"];
-                    }
   // Validate Essn
   $Essn = trim($_POST["Essn"]);
   if(empty($Essn)){
