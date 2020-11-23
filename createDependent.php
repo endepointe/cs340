@@ -20,12 +20,12 @@ require_once "config.php";
 if($_SERVER["REQUEST_METHOD"] == "POST"){
 
   // Validate Essn
-  $Essn = trim($_POST["Essn"]);
-  if(empty($Essn)){
-    $Essn_err = "Please enter SSN.";     
-  } elseif(!ctype_digit($Essn)){
-    $Essn_err = "Please enter a positive integer value of SSN.";
-  } 
+  //$Essn = trim($_POST["Essn"]);
+  //if(empty($Essn)){
+  //  $Essn_err = "Please enter SSN.";     
+  //} elseif(!ctype_digit($Essn)){
+  //  $Essn_err = "Please enter a positive integer value of SSN.";
+  //} 
 
   // Validate name
   $Dependent_name = trim($_POST["Dependent_name"]);
