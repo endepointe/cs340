@@ -45,7 +45,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
   } 
 
     // Check input errors before inserting in database
-    if (empty($Dname_err) && empty($Sex_err) && empty($Relationship_err)) {
+    if (empty($Dname_err) && empty($Sex_err) empty($Relationship_err)) {
         // Prepare an insert statement
         $sql = "INSERT INTO DEPENDENT (Essn, Dependent_name, Sex, Bdate, Relationship) 
 		        VALUES (?, ?, ?, ?, ?)";
@@ -56,19 +56,23 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             
             // Set parameters
 			      $param_Essn = $Essn;
-			      $param_Dname = $Dname;
+            $param_Dname = $Dname;
+            $param_Ssn = $Ssn;
+            $param_Lname = $Lname;
+			      $param_Fname = $Fname;
+			      $param_Address = $Address;
 			      $param_Sex = $Sex;
 			      $param_Bdate = $Bdate;
-            $param_Relationship = $Relationship;
-            
+            $param_Salary = $Salary;
+            $param_Dno = $Dno;
+
             // Attempt to execute the prepared statement
             if(mysqli_stmt_execute($stmt)){
                 // Records created successfully. Redirect to landing page
-				    header("location: viewDependents.php?Ssn='$Essn'");
-					exit();
+				        header("location: viewDependents.php?Ssn='$Essn'");
+					      exit();
             } else{
                 echo "<center><h4>Error while creating a dependent.</h4></center>";
-                $Dname_err = "Enter something not wrong.";
             }
         }
          
@@ -78,7 +82,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
     // Close connection
     mysqli_close($link);
-}
+//}
 ?>
 
 <!DOCTYPE html>
