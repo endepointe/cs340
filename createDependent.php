@@ -45,7 +45,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
   } 
 
     // Check input errors before inserting in database
-    if(empty($Dname_err) && empty($Sex_err) empty($Relationship_err)) {
+    if (empty($Dname_err) && empty($Sex_err) && empty($Relationship_err)) {
         // Prepare an insert statement
         $sql = "INSERT INTO DEPENDENT (Essn, Dependent_name, Sex, Bdate, Relationship) 
 		        VALUES (?, ?, ?, ?, ?)";
