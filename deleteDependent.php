@@ -29,7 +29,7 @@
 				// Attempt to execute the prepared statement
 				if(mysqli_stmt_execute($stmt)){
 					// Records deleted successfully. Redirect to landing page
-					header("location: index.php");
+					header("location: viewDependents.php?Ssn=$Essn");
 					exit();
 				} else{
 					echo "Error deleting the employee";

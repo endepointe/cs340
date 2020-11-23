@@ -10,16 +10,19 @@ $Dname_err = $Sex_err = $Relationship_err = "";
 // Form default values
 
 if(isset($_GET["Ssn"]) && !empty(trim($_GET["Ssn"]))){
-	$_SESSION["Ssn"] = $_GET["Ssn"];
+  $_SESSION["Ssn"] = $_GET["Ssn"];
+  $Essn = $_SESSION['Ssn'];
+  $Dname = $_SESSION['Dname'];
 
     // Prepare a select statement
-    $sql1 = "SELECT Dependent_name, Sex, Bdate, Relationship  FROM DEPENDENT WHERE Essn = ?";
+    $sql1 = "SELECT Dependent_name, Sex, Bdate, Relationship  FROM DEPENDENT WHERE Essn = ? AND Dependent_name = ?";
   
     if($stmt1 = mysqli_prepare($link, $sql1)){
         // Bind variables to the prepared statement as parameters
-        mysqli_stmt_bind_param($stmt1, "s", $param_Essn);      
+        mysqli_stmt_bind_param($stmt1, "is", $param_Essn, $param_Dname);      
         // Set parameters
-       $param_Essn = trim($_GET["Ssn"]);
+       $param_Essn = $Essn;
+       $param_Dname = $Dname;
 
         // Attempt to execute the prepared statement
         if(mysqli_stmt_execute($stmt1)){
@@ -36,16 +39,14 @@ if(isset($_GET["Ssn"]) && !empty(trim($_GET["Ssn"]))){
 		}
 	}
 }
-
  
-// Post information about the employee when the form is submitted
+// Post information about the dependent when the form is submitted
 // Processing form data when form is submitted
 if($_SERVER["REQUEST_METHOD"] == "POST"){
-    // the id is hidden and can not be changed
+
     $Essn = $_SESSION["Ssn"];
-    // Validate form data this is similar to the create Employee file
-    // Validate name
     $Dname = trim($_POST["Dname"]);
+
     if(empty($Dname)){
         $Dname_err = "Please enter a dependent name.";
     } elseif(!filter_var($Dname, FILTER_VALIDATE_REGEXP, array("options"=>array("regexp"=>"/^[a-zA-Z\s]+$/")))){
@@ -69,11 +70,11 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     // Check input errors before inserting into database
     if(empty($Dname_err) && empty($Relationship_err) && empty($Sex_err)){
         // Prepare an update statement
-        $sql = "UPDATE DEPENDENT SET Dependent_name=?, Sex=?, Bdate=?, Relationship= ? WHERE Essn=?";
+        $sql = "UPDATE DEPENDENT SET Dependent_name=?, Sex=?, Bdate=?, Relationship= ? WHERE Essn=? AND Dependent_name = ?";
     
         if($stmt = mysqli_prepare($link, $sql)){
             // Bind variables to the prepared statement as parameters
-            mysqli_stmt_bind_param($stmt, "ssssi", $param_Dname, $param_Sex,$param_Bdate, $param_Relationship);
+            mysqli_stmt_bind_param($stmt, "ssssis", $param_Dname, $param_Sex,$param_Bdate, $param_Relationship, $param_Dname);
 
             // Set parameters
 			      $param_Essn = $Essn;
