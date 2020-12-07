@@ -2,7 +2,7 @@ module.exports = function () {
   var express = require('express');
   var router = express.Router();
 
-  router.get('/', function (req, res) {
+  router.get('/', (req, res) => {
     res.send("from the employees.js file");
   });
 
