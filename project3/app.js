@@ -18,7 +18,7 @@ app.use('/people_certs', require('./people_certs.js'));
 app.use('/people', require('./people.js'));
 app.use('/planets', require('./planets.js'));
 */
-app.use('/', require('./employees.js'));
+app.use('/employees', require('./employees.js'));
 
 app.use(function (req, res) {
   res.status(404);
