@@ -18,9 +18,7 @@ app.use('/people_certs', require('./people_certs.js'));
 app.use('/people', require('./people.js'));
 app.use('/planets', require('./planets.js'));
 */
-app.use('/', (req, res) => {
-  res.send('project3');
-});
+app.use('/', require('./employees.js'));
 
 app.use(function (req, res) {
   res.status(404);
