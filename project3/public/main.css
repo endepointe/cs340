@@ -1,0 +1,18 @@
+.formSection {
+  width: 400px;
+  margin: 0 auto;
+  padding: 0;
+}
+form {
+  margin-top: 1rem;
+}
+label {
+}
+input {
+}
+.forminput {
+}
+.forminput label {
+  display: inline;
+  widows: 100%; 
+}

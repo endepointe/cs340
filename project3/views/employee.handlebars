@@ -1,0 +1,47 @@
+<html>
+<section class="formSection">
+  <h3>Current Employees:</h3>
+  <table>
+    <thead>
+      <th>First Name</th>
+      <th>Last Name</th>
+      <th>Salary</th>
+      <th>Dno</th>
+    </thead>
+    <tbody>
+      {{#each employees}}
+      <tr>
+        <td>{{Fname}}</td>
+        <td>{{Lname}}</td>
+        <td>{{Salary}}</td>
+        <td>{{Dno}}</td>
+      </tr>
+      {{/each}}
+    </tbody>
+  </table>
+
+  <form id='filter_employees' action='' method=''>
+    <!--- this form does not submit directly, the button handles all the interaction with backend -->
+    <label>Filter by Project:</label>
+    <select id='project_filter' name="project">
+      {{#each projects}}
+      <option value="{{Pname}}">{{Pname}}</option>
+      {{/each}}
+    </select><br>
+    <input type="button" value="Filter" onclick="filterEmployeesByProject()">
+    <input type="button" value="Clear" onclick="clearEmployeeFilter()">
+  </form>
+
+  <form id='search_employee' action='' method=''>
+    <!--- this form does not submit directly, the button handles all the interaction with backend -->
+    <div class="forminput">
+      <label> Search employees for first name starting with:</label>
+      <input id='first_name' type='text' name='fname' value=''>
+      <input type="button" value="Search" onclick="searchEmployeesByFname()">
+      <input type="button" value="Clear" onclick="clearEmployeeFilter()">
+    </div>
+  </form>
+</section>
+
+
+</html>
