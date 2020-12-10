@@ -64,10 +64,16 @@ const getProjects = (res, mysql, context, complete) => {
 ////////////////////////////////////////////////////////////////////////////////
 function getEmployeesByProject(req, res, mysql, context, complete) {
   var query = `
-    select E.Fname, E.Lname, E.Salary, E.Dno
-    from EMPLOYEE E JOIN PROJECT P ON E.Dno = P.Dnum
+    select DISTINCT 
+      E.Fname, 
+      E.Lname, 
+      E.Salary, 
+      E.Dno 
+    from EMPLOYEE E
+      JOIN WORKS_ON W on W.Essn = E.Ssn
+      JOIN PROJECT P on P.Pnumber = W.Pno
     where P.Pname = '${req.params.projectname}'
-  `;
+    GROUP BY E.Fname`;
 
   var inserts = [req.params.projectname];
 

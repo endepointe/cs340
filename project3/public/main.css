@@ -1,18 +1,66 @@
-.formSection {
-  width: 400px;
-  margin: 0 auto;
-  padding: 0;
+body {
+  padding: 2em;
 }
-form {
-  margin-top: 1rem;
+
+table.table, h3, form { width: 50%; margin: 0 auto; }
+
+h3, p {
+  text-align: center;
+  margin-bottom: 2rem;
 }
-label {
+
+.table th, .table td { 
+  text-align: left; 
+  padding: 0.25em;
 }
-input {
+
+.table tr { 
+  border-bottom: 1px solid #DDD;
 }
-.forminput {
+td.edit-buttons { text-align: right; }
+button { 
+  border-radius: 3px; 
+  border: none; 
+  margin: 0 0.25em; 
+  transition: all 0.3s;
 }
-.forminput label {
-  display: inline;
-  widows: 100%; 
+
+button:hover { 
+  box-shadow: 0 0 4px rgba(3,3,3,0.8); 
+  opacity: 0.9;
 }
+
+.form-inputs {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.input-field {
+  display: flex;
+  justify-content: space-between;
+}
+
+.form-btns {
+  align-self: flex-end;
+}
+
+@media screen and (max-width: 800px) {
+  tr { 
+    display: flex; 
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin: 0.5em 0;
+    border: 1px solid rgba(3,3,3,0.2);
+  }
+  td, th {
+    flex: 1 1 150px;
+    border: 0.5px solid rgba(3,3,3,0.2);
+  }
+  td.edit-buttons, td.empty {
+    /*flex: 1 0 90%;
+    text-align: center;*/
+  }
+}
+
+* { box-model: border-box; font-family: 'futura'; }
